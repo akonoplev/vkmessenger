@@ -1,0 +1,6 @@
+framework module Pods_VKmessanger {
+  umbrella header "Pods-VKmessanger-umbrella.h"
+
+  export *
+  module * { export * }
+}
