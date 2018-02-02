@@ -36,13 +36,14 @@ class DialogCell: UITableViewCell {
             snippetLabel.text = dialog.snippet
             dateLabel.text = DateSerice.dateTransform(date: dialog.timestamp ?? Date(timeIntervalSince1970: 0))
             avatarImage.sd_setImage(with: URL(string: usersInfo[0].avatarURL ?? ""))
+            
         } else {
             titleLabel.text = dialog.title
             snippetLabel.text = dialog.snippet
             dateLabel.text = DateSerice.dateTransform(date: dialog.timestamp ?? Date(timeIntervalSince1970: 0))
             if dialog.miltiChatURL != "" {
                 avatarImage.sd_setImage(with: URL(string: dialog.miltiChatURL ?? ""))
-            } 
+            }
         }
     }
 }
