@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class API_conf {
     static func getRequst(url: String, params: [String: Any])-> URLRequest {

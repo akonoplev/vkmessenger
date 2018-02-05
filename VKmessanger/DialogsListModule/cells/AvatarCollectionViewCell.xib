@@ -33,7 +33,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="164" height="167"/>
             <connections>
-                <outlet property="avatarImage" destination="pu0-S7-V5c" id="yak-hD-h5r"/>
+                <outlet property="avatarImage" destination="pu0-S7-V5c" id="HKY-eN-k6u"/>
             </connections>
             <point key="canvasLocation" x="91" y="123.5"/>
         </collectionViewCell>

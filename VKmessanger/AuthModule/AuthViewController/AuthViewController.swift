@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class AuthViewController: UIViewController {
 
@@ -15,11 +16,14 @@ class AuthViewController: UIViewController {
 
     }
     
+    
     override func viewDidAppear(_ animated: Bool)
     {
         VKMAuthService.sharedInstance.auth(controller: self, success: {
             
-            print("успехи - \(VKMAuthService.sharedInstance.getAccessToken())")
+            if ProfileService.sharedInstance.getName() == "d" {
+                ProfileService.sharedInstance.setProfile()
+            }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0)
             {

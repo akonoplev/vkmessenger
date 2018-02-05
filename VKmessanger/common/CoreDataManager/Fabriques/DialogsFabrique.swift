@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 class DialogsFabrique {
-    class func setDialogs(id:Int64, snippet: String, timestamp: Date, users: [Int64], senderID: Int64, title: String,multiChatURL: String , type: String, context: NSManagedObjectContext) {
+    class func setDialogs(id:Int64, snippet: String, timestamp: Date, senderID: Int64, title: String,multiChatURL: String ,out: Bool,isRead: Bool, context: NSManagedObjectContext)-> Dialog {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Dialog")
         let predicate = NSPredicate(format: "id=%lld", id)
         fetchRequest.predicate = predicate
@@ -21,20 +21,25 @@ class DialogsFabrique {
             dialog.id = id
             dialog.snippet = snippet
             dialog.timestamp = timestamp
-            dialog.users = users as NSObject
             dialog.senderID = senderID
             dialog.title = title
-            dialog.type = type
+            dialog.out = out
+            dialog.isRead = isRead
             dialog.miltiChatURL = multiChatURL
+            
+            return dialog
+            
         } else {
             let dialog = fetchResult![0]
             dialog.snippet = snippet
             dialog.timestamp = timestamp
-            dialog.users = users as NSObject
             dialog.senderID = senderID
             dialog.title = title
-            dialog.type = type
+            dialog.out = out
+            dialog.isRead = isRead
             dialog.miltiChatURL = multiChatURL
+            
+            return dialog
         }
     }
     

@@ -9,8 +9,8 @@
 import Foundation
 
 class DataProvider {
-    class func getDialogs(success: @escaping ()-> Void, failure: @escaping (_ errorDescription: String)-> Void) {
-        let operation = DialogsInfoOperation(success: success, failure: failure)
+    class func getDialogs(offset: Int, success: @escaping ()-> Void, failure: @escaping (_ errorDescription: String)-> Void) {
+        let operation = DialogsInfoOperation(offset: offset, success: success, failure: failure)
         OperationManager.addOperation(op: operation, cancelingQueue: true)
     }
 }

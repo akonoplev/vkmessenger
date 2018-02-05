@@ -14,16 +14,26 @@ protocol DialogsListViewInterface: class {
     func handleInternetError(error: String)
 }
 
+protocol DialogsListFrcViewChange: class {
+    func beginUpdates()
+    func endUpdates()
+    func insert(to newIndexPath: IndexPath?)
+    func update(indexPath: IndexPath?, object: Dialog)
+    func move(from indexPath: IndexPath?, to newIndexPath: IndexPath?)
+    func delete(indexPath: IndexPath?)
+}
+
 protocol DialogsListPresenterInterface: class {
     func viewDidLoad()
     func viewWillAppear(animated: Bool)
     func viewDidAppear(animated: Bool)
+    func getData(offset: Int)
     func numberOfEntities() -> Int
     func entityAt(index: IndexPath)-> Any?
 }
 
 protocol DialogsListInteractorInput: class {
-    func getData()
+    func getData(offset: Int)
 }
 
 protocol DialogsListInteractorOutput: class {

@@ -10,15 +10,16 @@ import Foundation
 
 class API_wrapper {
     //MARK: get Dialogs
-    class func getDialogs(success: @escaping (_ json: Any)->Void, failure: @escaping (_ errorDescription: String)-> Void)-> URLSessionTask {
+    class func getDialogs(offset: Int, success: @escaping (_ json: Any)->Void, failure: @escaping (_ errorDescription: String)-> Void)-> URLSessionTask {
         let url = const.API.url + "messages.getDialogs"
         let params: [String: Any] = [
-            "count": 50,
+            "offset": offset,
+            "count": 40,
             "unread": 0,
             "important": 0,
             "unanswered": 0,
             "access_token": VKMAuthService.sharedInstance.getAccessToken(),
-            "v": 5.69 ]
+            "v": 5.71]
         
         let request = API_conf.getRequst(url: url, params: params)
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, requestError) in
@@ -43,6 +44,46 @@ class API_wrapper {
             API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: failure)
             
         }
+        dataTask.resume()
+        return dataTask
+    }
+    
+    //MARK: - get message history
+    class func getHistoryMessage(user_id: Int64?, peer_id: Int64?, type: String,count: Int, offset: Int, success: @escaping (_ json: Any)-> Void,failure: @escaping (_ error: String)-> Void)-> URLSessionTask{
+        
+        let url = const.API.url + "messages.getHistory"
+        let request_id = type == "chat" ? "peer_id" : "user_id"
+        let id = type == "chat" ? 2000000000 + (peer_id ?? 0) : user_id
+        let params: [String:Any] = [
+            "count": count,
+            "offset": offset,
+            request_id: id!,
+            "access_token": VKMAuthService.sharedInstance.getAccessToken() ,
+            "v": 5.71]
+        
+        let request = API_conf.getRequst(url: url, params: params)
+        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, requestError) in
+            API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: failure)
+        }
+        
+        dataTask.resume()
+        return dataTask
+        
+    }
+}
+
+extension API_wrapper {
+    class func getProfileInfo(success: @escaping (_ json: Any)-> Void, failure: @escaping (_ error: String)-> Void)-> URLSessionTask {
+        let url = const.API.url + "account.getProfileInfo"
+        let params: [String: Any] = [
+            "access_token": VKMAuthService.sharedInstance.getAccessToken(),
+            "v": 5.71]
+        
+        let request = API_conf.getRequst(url: url, params: params)
+        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, requestError) in
+            API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: failure)
+        }
+        
         dataTask.resume()
         return dataTask
     }

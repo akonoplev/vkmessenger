@@ -13,92 +13,92 @@ import CoreData
 class DialogsInfoOperation: Operation {
     var success: ()-> Void
     var failure: (String) -> Void
+    var offset = 0
+    var user: User?
+    var dialog: Dialog?
     
     var urlSessionDataTask: URLSessionDataTask?
     
-    init(success: @escaping ()-> Void, failure: @escaping (String)-> Void) {
+    init(offset: Int ,success: @escaping ()-> Void, failure: @escaping (String)-> Void) {
         self.success = success
         self.failure = failure
+        self.offset = offset
         super.init()
     }
     
     override func main() {
         let semaphore = DispatchSemaphore(value: 0)
-        _ = API_wrapper.getDialogs(success: { (response) in
+        _ = API_wrapper.getDialogs(offset: self.offset, success: { (response) in
             let backgroundContext = CoreDataManager.sharedInstance.getBackgroundContext()
             let json = JSON(response)
-            var unknowUser = ""
-            for dialog in json["response"]["items"].arrayValue {
+            let rawItems = json["response"]
+            let items = rawItems["items"].arrayValue
+            
+            var usersArray = ""
+            
+            
+            for dialog in items {
+                let message = dialog["message"]
+                let chatID = message["chat_id"].int64Value
+                var multichatURL = "empty"
+                let senderUserID = message["user_id"].int64Value
+                let title = message["title"].stringValue
+                let isRead = message["read_state"].boolValue
+                let out = message["out"].boolValue
+                var body = message["body"].stringValue
                 
-                let messageBody = dialog["message"].dictionary
-//                                print("============")
-//                                print(dialog)
-                guard let message = messageBody else { return }
-                var id =  message["chat_id"]?.int64Value
-                var type = "chat"
-                if id == nil {
-                    id = message["id"]?.int64Value
-                    type = "dialog"
+                if message["photo_100"] != JSON.null {
+                    multichatURL = message["photo_100"].stringValue
+                }
+                
+                let date = message["date"].doubleValue
+                
+                if body == "" {
+                    let attachment = message["attachments"].arrayValue
+                    var tempBody = ""
                     
-                }
-                
-                var users = [Int64]()
-                let body = message["body"]?.stringValue
-               // let read_state = message["read_state"]?.boolValue
-                let date = message["date"]?.doubleValue
-               // let out = message["out"]?.boolValue
-                var sender_id = message["user_id"]?.int64Value
-                let user_id = message["user_id"]?.arrayValue
-                let title = message["title"]?.stringValue
-                var multiChatURL = message["photo_100"]?.stringValue
-                
-                for user in user_id! {
-                    users.append(user.int64Value)
-                }
-                
-                
-                if type == "chat" {
-                    let chat_users = message["chat_active"]?.arrayValue
-                    sender_id = message["id"]?.int64Value
-                    for user_id in chat_users! {
-                       users.append(user_id.int64Value)
-                    
-                    }
-                }
-                
-                DialogsFabrique.setDialogs(id: id ?? 0, snippet: body ?? "", timestamp: Date(timeIntervalSince1970: date ?? 0), users: users , senderID: sender_id ?? 0, title: title ?? "", multiChatURL: multiChatURL ?? "", type: type, context: CoreDataManager.sharedInstance.getMainContext())
-                
-                UserFabrique.setUser(id: sender_id ?? 0, name: nil, avatarURL: nil, online: false, context: CoreDataManager.sharedInstance.getMainContext())
-                
-                let dialogue = DialogsFabrique.getDialog(id: id ?? 0, context: backgroundContext)
-                
-                if dialogue?.type == "dialog" {
-                    let user = UserFabrique.getUser(id: sender_id ?? 0, context: backgroundContext)
-                    if user == nil {
-                        unknowUser += String(describing: user_id) + ","
+                    for attach in attachment {
+                        let type = attach["type"].stringValue
                         
-                    } else {
-                        user?.addToUserToDialog(dialogue!)
-                        dialogue?.addToDialogToUser(user!)
-                    }
-                } else if dialogue?.type == "chat" {
-                    for user in dialogue?.users as! [Int64] {
-                        let chat_user = UserFabrique.getUser(id: user, context: backgroundContext)
-                        if chat_user == nil {
-                            unknowUser += String(describing: user_id) + ","
-                        } else {
-                            chat_user?.addToUserToDialog(dialogue!)
-                            dialogue?.addToDialogToUser(chat_user!)
+                        switch type {
+                        case "photo": tempBody = "Фотография"
+                        case "video": tempBody = "Видео"
+                        case "audio": tempBody = "Аудиозапись"
+                        case "doc": tempBody = "Документ"
+                        case "link": tempBody = "Ссылка"
+                        case "market": tempBody = "Товар"
+                        case "market_album": tempBody = "Подборка товаров"
+                        case "wall": tempBody = "Запись со стены"
+                        case "wall_reply": tempBody = "Коментарий на стене"
+                        case "sticker": tempBody = "Стикер"
+                        case "gift": tempBody = "Подарок"
+                            
+                        default: tempBody = "Пересланое сообщение"
                         }
+                        body = tempBody
                     }
+                    
                 }
+                
+                if chatID != 0 {
+                     let chatUsers = message["chat_active"].arrayValue
+                    for userInChat in chatUsers {
+                        let user = userInChat.int64Value
+                        usersArray += "\(user),"
+                        self.setObjects(id: user, chatID: chatID, senderId: senderUserID, title: title, isRead:isRead , out: out, userId: user, timestamp: Date(timeIntervalSince1970: date), snippet: body , multichatAvatar: multichatURL, context: backgroundContext)
+                    }
+                } else {
+                    usersArray += "\(senderUserID),"
+                    self.setObjects(id: senderUserID, chatID: senderUserID, senderId: senderUserID, title: title, isRead: isRead, out: out, userId: senderUserID, timestamp: Date(timeIntervalSince1970: date) , snippet: body, multichatAvatar: multichatURL, context: backgroundContext)
+                }
+                
             }
             
             if self.isCancelled {
                 self.success()
                 _ = semaphore.signal()
             } else {
-                self.getUsers(ids: CoreDataService.setUserInfo(context: backgroundContext ), semaphore: semaphore, backgroundContext: backgroundContext)
+                self.getUsers(ids: usersArray, semaphore: semaphore, backgroundContext: backgroundContext)
             }
             
         }, failure: { (error) in
@@ -110,6 +110,7 @@ class DialogsInfoOperation: Operation {
     }
     
     func getUsers(ids: String, semaphore: DispatchSemaphore, backgroundContext: NSManagedObjectContext) {
+        _ = ids.dropLast()
         _ = API_wrapper.getUserInfo(id: ids, success: { (response) in
             let infoJson = JSON(response)
             let arrayInfo = infoJson["response"].arrayValue
@@ -119,13 +120,26 @@ class DialogsInfoOperation: Operation {
                 let online = param["online"].boolValue
                 let avatarURL = param["photo_50"].stringValue
                 
-                UserFabrique.setUser(id: id, name: name, avatarURL: avatarURL, online: online, context: backgroundContext)
+               _ = UserFabrique.setUser(id: id, name: name, avatarURL: avatarURL, online: online, context: backgroundContext)
             }
-            _ = semaphore.signal()
             _ = try? backgroundContext.save()
             self.success()
+            _ = semaphore.signal()
+
         }, failure: { (error) in
             print(error)
         })
+    }
+    
+    func setObjects(id: Int64, chatID: Int64, senderId: Int64, title: String, isRead: Bool, out: Bool, userId: Int64, timestamp: Date, snippet: String, multichatAvatar: String, context: NSManagedObjectContext ) {
+        
+        self.dialog = DialogsFabrique.setDialogs(id: chatID, snippet: snippet, timestamp: timestamp, senderID: senderId, title: title, multiChatURL: multichatAvatar, out: out, isRead: isRead, context: context)
+        self.user = UserFabrique.setUser(id: id, name: "", avatarURL: "", online:
+            false, context: context)
+        
+        user?.addToUserToDialog(self.dialog!)
+        dialog?.addToDialogToUser(self.user!)
+        
+        
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 class UserFabrique {
-    class func setUser(id: Int64, name: String?, avatarURL: String?, online: Bool, context: NSManagedObjectContext ) {
+    class func setUser(id: Int64, name: String, avatarURL: String, online: Bool, context: NSManagedObjectContext )-> User {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         let predicate = NSPredicate(format: "id=%lld", id)
         fetchRequest.predicate = predicate
@@ -23,11 +23,14 @@ class UserFabrique {
             user.name = name
             user.avatarURL = avatarURL
             user.online = online
+            return user
         } else {
             let user = fetchResult![0]
             user.name = name
             user.avatarURL = avatarURL
             user.online = online
+            return user
+            
         }
     }
     

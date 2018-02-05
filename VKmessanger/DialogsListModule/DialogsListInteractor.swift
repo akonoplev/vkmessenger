@@ -11,8 +11,8 @@ import Foundation
 class DialogsListInteractor: DialogsListInteractorInput {
     
     weak var output: DialogsListInteractorOutput?
-    func getData() {
-        DataProvider.getDialogs(success: {
+    func getData(offset: Int) {
+        DataProvider.getDialogs(offset: offset, success: {
             self.output?.success()
         }) { (error) in
             self.output?.failure(error: error)

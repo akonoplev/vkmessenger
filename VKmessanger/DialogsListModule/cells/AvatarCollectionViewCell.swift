@@ -14,12 +14,13 @@ class AvatarCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var avatarImage: UIImageView!
     
     override func awakeFromNib() {
+        
         super.awakeFromNib()
     
     }
     
-    func configure(user: User) {
-        avatarImage.sd_setImage(with: NSURL(string: user.avatarURL ?? "") as URL? )
+    func configure(url: String) {
+        avatarImage.sd_setImage(with: NSURL(string: url ) as URL? )
     }
 
 }

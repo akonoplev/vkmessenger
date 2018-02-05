@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		771DBDAF7BA4E659C5D5D700 /* Pods_VKmessanger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4174B7D0E70D60942DCDD3B9 /* Pods_VKmessanger.framework */; };
+		9A0606FF2024BC93009A635E /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A0606FE2024BC93009A635E /* phone.png */; };
+		9A0607022024C035009A635E /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0607012024C035009A635E /* Chat.storyboard */; };
+		9A0607042024C059009A635E /* ChatInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0607032024C059009A635E /* ChatInterfaces.swift */; };
+		9A0607062024C06C009A635E /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0607052024C06C009A635E /* ChatViewController.swift */; };
+		9A0607082024C080009A635E /* ChatPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0607072024C080009A635E /* ChatPresenter.swift */; };
+		9A06070A2024C096009A635E /* ChatInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0607092024C096009A635E /* ChatInteractor.swift */; };
+		9A06070C2024C0A9009A635E /* ChatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A06070B2024C0A9009A635E /* ChatRouter.swift */; };
+		9A17D33F2024821F008ECA41 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A17D33E2024821F008ECA41 /* ProfileService.swift */; };
+		9A17D34220248D12008ECA41 /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A17D34120248D12008ECA41 /* CustomViews.swift */; };
 		9A256B4220225CBA00FE1EBF /* DialogsList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A256B4120225CBA00FE1EBF /* DialogsList.storyboard */; };
 		9A256B4420225CD200FE1EBF /* DialogsListInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A256B4320225CD200FE1EBF /* DialogsListInterfaces.swift */; };
 		9A256B4620225CEF00FE1EBF /* DialogsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A256B4520225CEF00FE1EBF /* DialogsListViewController.swift */; };
@@ -27,7 +36,6 @@
 		9AD0EBBC1FFFBCE100DC8A5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AD0EBBA1FFFBCE100DC8A5E /* LaunchScreen.storyboard */; };
 		9AD0EBC71FFFC1E200DC8A5E /* Auth_service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0EBC61FFFC1E200DC8A5E /* Auth_service.swift */; };
 		9AD0EBCA1FFFC21600DC8A5E /* constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0EBC91FFFC21600DC8A5E /* constant.swift */; };
-		9AD0EBD01FFFC7C900DC8A5E /* DialogsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0EBCF1FFFC7C900DC8A5E /* DialogsVC.swift */; };
 		9AD0EBD3200165E000DC8A5E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0EBD2200165E000DC8A5E /* CoreDataManager.swift */; };
 		9AD0EBD62001670500DC8A5E /* Massenger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0EBD42001670500DC8A5E /* Massenger.xcdatamodeld */; };
 		9AD0EBD92001673D00DC8A5E /* API_wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0EBD82001673D00DC8A5E /* API_wrapper.swift */; };
@@ -35,7 +43,6 @@
 		9AD0EBDF2004C00400DC8A5E /* ViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0EBDE2004C00400DC8A5E /* ViewInput.swift */; };
 		9AD0EBE12004C04A00DC8A5E /* PresenterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0EBE02004C04A00DC8A5E /* PresenterInput.swift */; };
 		9AD0EBE32004C0E000DC8A5E /* PresenterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0EBE22004C0E000DC8A5E /* PresenterOutput.swift */; };
-		9AD0EBE62004CFC300DC8A5E /* DialogsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0EBE52004CFC300DC8A5E /* DialogsPresenter.swift */; };
 		9AD0EBE92004D09200DC8A5E /* DialogsFabrique.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0EBE82004D09200DC8A5E /* DialogsFabrique.swift */; };
 		9AD1068E2017A4B20028D78B /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD1068D2017A4B20028D78B /* AlertService.swift */; };
 		9AD106922017AADA0028D78B /* DialogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD106902017AADA0028D78B /* DialogCell.swift */; };
@@ -49,6 +56,15 @@
 		19075D2BDB4F9E5F0EB4A446 /* Pods-VKmessanger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKmessanger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VKmessanger/Pods-VKmessanger.debug.xcconfig"; sourceTree = "<group>"; };
 		4174B7D0E70D60942DCDD3B9 /* Pods_VKmessanger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKmessanger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E840491F78F07851A99A9C9 /* Pods-VKmessanger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKmessanger.release.xcconfig"; path = "Pods/Target Support Files/Pods-VKmessanger/Pods-VKmessanger.release.xcconfig"; sourceTree = "<group>"; };
+		9A0606FE2024BC93009A635E /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
+		9A0607012024C035009A635E /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
+		9A0607032024C059009A635E /* ChatInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInterfaces.swift; sourceTree = "<group>"; };
+		9A0607052024C06C009A635E /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		9A0607072024C080009A635E /* ChatPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPresenter.swift; sourceTree = "<group>"; };
+		9A0607092024C096009A635E /* ChatInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInteractor.swift; sourceTree = "<group>"; };
+		9A06070B2024C0A9009A635E /* ChatRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRouter.swift; sourceTree = "<group>"; };
+		9A17D33E2024821F008ECA41 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
+		9A17D34120248D12008ECA41 /* CustomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
 		9A256B4120225CBA00FE1EBF /* DialogsList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DialogsList.storyboard; sourceTree = "<group>"; };
 		9A256B4320225CD200FE1EBF /* DialogsListInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsListInterfaces.swift; sourceTree = "<group>"; };
 		9A256B4520225CEF00FE1EBF /* DialogsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsListViewController.swift; sourceTree = "<group>"; };
@@ -70,7 +86,6 @@
 		9AD0EBBD1FFFBCE100DC8A5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AD0EBC61FFFC1E200DC8A5E /* Auth_service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth_service.swift; sourceTree = "<group>"; };
 		9AD0EBC91FFFC21600DC8A5E /* constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constant.swift; sourceTree = "<group>"; };
-		9AD0EBCF1FFFC7C900DC8A5E /* DialogsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsVC.swift; sourceTree = "<group>"; };
 		9AD0EBD2200165E000DC8A5E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		9AD0EBD52001670500DC8A5E /* Massenger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Massenger.xcdatamodel; sourceTree = "<group>"; };
 		9AD0EBD82001673D00DC8A5E /* API_wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_wrapper.swift; sourceTree = "<group>"; };
@@ -78,7 +93,6 @@
 		9AD0EBDE2004C00400DC8A5E /* ViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInput.swift; sourceTree = "<group>"; };
 		9AD0EBE02004C04A00DC8A5E /* PresenterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterInput.swift; sourceTree = "<group>"; };
 		9AD0EBE22004C0E000DC8A5E /* PresenterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterOutput.swift; sourceTree = "<group>"; };
-		9AD0EBE52004CFC300DC8A5E /* DialogsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsPresenter.swift; sourceTree = "<group>"; };
 		9AD0EBE82004D09200DC8A5E /* DialogsFabrique.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsFabrique.swift; sourceTree = "<group>"; };
 		9AD1068D2017A4B20028D78B /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		9AD106902017AADA0028D78B /* DialogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogCell.swift; sourceTree = "<group>"; };
@@ -117,9 +131,48 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9A0606FB2024BB46009A635E /* images */ = {
+			isa = PBXGroup;
+			children = (
+				9A0606FE2024BC93009A635E /* phone.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		9A0607002024C010009A635E /* ChatModule */ = {
+			isa = PBXGroup;
+			children = (
+				9A0607012024C035009A635E /* Chat.storyboard */,
+				9A0607032024C059009A635E /* ChatInterfaces.swift */,
+				9A0607052024C06C009A635E /* ChatViewController.swift */,
+				9A0607072024C080009A635E /* ChatPresenter.swift */,
+				9A0607092024C096009A635E /* ChatInteractor.swift */,
+				9A06070B2024C0A9009A635E /* ChatRouter.swift */,
+			);
+			path = ChatModule;
+			sourceTree = "<group>";
+		};
+		9A17D33D2024820C008ECA41 /* ProfileService */ = {
+			isa = PBXGroup;
+			children = (
+				9A17D33E2024821F008ECA41 /* ProfileService.swift */,
+			);
+			path = ProfileService;
+			sourceTree = "<group>";
+		};
+		9A17D34020248CFD008ECA41 /* customViews */ = {
+			isa = PBXGroup;
+			children = (
+				9A17D34120248D12008ECA41 /* CustomViews.swift */,
+			);
+			path = customViews;
+			sourceTree = "<group>";
+		};
 		9A256B3F20225BD300FE1EBF /* common */ = {
 			isa = PBXGroup;
 			children = (
+				9A0606FB2024BB46009A635E /* images */,
+				9A17D34020248CFD008ECA41 /* customViews */,
 				9AD0EBC81FFFC20700DC8A5E /* constant */,
 				9AD0EBD1200165D000DC8A5E /* CoreDataManager */,
 				9AD0EBDD2004BFD800DC8A5E /* Interfaces */,
@@ -148,6 +201,10 @@
 		9A256B4D20225DDD00FE1EBF /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				9AD106902017AADA0028D78B /* DialogCell.swift */,
+				9AD106912017AADA0028D78B /* DialogCell.xib */,
+				9A26F7B1201F6F6D0013EAFD /* AvatarCollectionViewCell.swift */,
+				9A26F7B2201F6F6D0013EAFD /* AvatarCollectionViewCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -208,9 +265,9 @@
 			isa = PBXGroup;
 			children = (
 				9A256B3F20225BD300FE1EBF /* common */,
-				9A256B4020225C8800FE1EBF /* DialogsListModule */,
 				9A548F2B20200769001C07E0 /* AuthModule */,
-				9AD0EBCD1FFFC76100DC8A5E /* DialogsModule */,
+				9A256B4020225C8800FE1EBF /* DialogsListModule */,
+				9A0607002024C010009A635E /* ChatModule */,
 			);
 			path = VKmessanger;
 			sourceTree = "<group>";
@@ -230,6 +287,7 @@
 		9AD0EBC41FFFC18000DC8A5E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				9A17D33D2024820C008ECA41 /* ProfileService */,
 				9AD106942017D6BB0028D78B /* DateService */,
 				9AD1068C2017A4910028D78B /* AlertService */,
 				9AC1D283201226D2009212BE /* CoreDataService */,
@@ -252,24 +310,6 @@
 				9AD0EBC91FFFC21600DC8A5E /* constant.swift */,
 			);
 			path = constant;
-			sourceTree = "<group>";
-		};
-		9AD0EBCD1FFFC76100DC8A5E /* DialogsModule */ = {
-			isa = PBXGroup;
-			children = (
-				9AD0EBE42004CFA400DC8A5E /* Presenter */,
-				9AD0EBCE1FFFC78E00DC8A5E /* ViewController */,
-			);
-			path = DialogsModule;
-			sourceTree = "<group>";
-		};
-		9AD0EBCE1FFFC78E00DC8A5E /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				9AD0EBCF1FFFC7C900DC8A5E /* DialogsVC.swift */,
-				9AD1068F2017AAA50028D78B /* cells */,
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		9AD0EBD1200165D000DC8A5E /* CoreDataManager */ = {
@@ -311,31 +351,12 @@
 			path = Interfaces;
 			sourceTree = "<group>";
 		};
-		9AD0EBE42004CFA400DC8A5E /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				9AD0EBE52004CFC300DC8A5E /* DialogsPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
 		9AD1068C2017A4910028D78B /* AlertService */ = {
 			isa = PBXGroup;
 			children = (
 				9AD1068D2017A4B20028D78B /* AlertService.swift */,
 			);
 			path = AlertService;
-			sourceTree = "<group>";
-		};
-		9AD1068F2017AAA50028D78B /* cells */ = {
-			isa = PBXGroup;
-			children = (
-				9AD106902017AADA0028D78B /* DialogCell.swift */,
-				9AD106912017AADA0028D78B /* DialogCell.xib */,
-				9A26F7B1201F6F6D0013EAFD /* AvatarCollectionViewCell.swift */,
-				9A26F7B2201F6F6D0013EAFD /* AvatarCollectionViewCell.xib */,
-			);
-			path = cells;
 			sourceTree = "<group>";
 		};
 		9AD106942017D6BB0028D78B /* DateService */ = {
@@ -411,8 +432,10 @@
 				9AD0EBBC1FFFBCE100DC8A5E /* LaunchScreen.storyboard in Resources */,
 				9AD0EBB91FFFBCE100DC8A5E /* Assets.xcassets in Resources */,
 				9AD0EBB71FFFBCE100DC8A5E /* Main.storyboard in Resources */,
+				9A0606FF2024BC93009A635E /* phone.png in Resources */,
 				9A26F7B4201F6F6D0013EAFD /* AvatarCollectionViewCell.xib in Resources */,
 				9A256B4220225CBA00FE1EBF /* DialogsList.storyboard in Resources */,
+				9A0607022024C035009A635E /* Chat.storyboard in Resources */,
 				9AD106932017AADA0028D78B /* DialogCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,29 +511,34 @@
 				9AD0EBE12004C04A00DC8A5E /* PresenterInput.swift in Sources */,
 				9AD0EBD3200165E000DC8A5E /* CoreDataManager.swift in Sources */,
 				9A256B4820225CFD00FE1EBF /* DialogsListPresenter.swift in Sources */,
+				9A0607082024C080009A635E /* ChatPresenter.swift in Sources */,
 				9AD1068E2017A4B20028D78B /* AlertService.swift in Sources */,
 				9AD0EBDB2001674D00DC8A5E /* API_conf.swift in Sources */,
 				9A548F2E202007F4001C07E0 /* AuthViewController.swift in Sources */,
+				9A17D33F2024821F008ECA41 /* ProfileService.swift in Sources */,
 				9AD0EBCA1FFFC21600DC8A5E /* constant.swift in Sources */,
-				9AD0EBE62004CFC300DC8A5E /* DialogsPresenter.swift in Sources */,
 				9AD0EBE32004C0E000DC8A5E /* PresenterOutput.swift in Sources */,
 				9AD0EBD62001670500DC8A5E /* Massenger.xcdatamodeld in Sources */,
 				9AD0EBE92004D09200DC8A5E /* DialogsFabrique.swift in Sources */,
 				9AE608FF200F451700F92DF3 /* UserFabrique.swift in Sources */,
+				9A06070C2024C0A9009A635E /* ChatRouter.swift in Sources */,
+				9A0607042024C059009A635E /* ChatInterfaces.swift in Sources */,
 				9A6A86EC201726F700A6C3AB /* OperationManager.swift in Sources */,
 				9A26F7B3201F6F6D0013EAFD /* AvatarCollectionViewCell.swift in Sources */,
 				9A256B4620225CEF00FE1EBF /* DialogsListViewController.swift in Sources */,
 				9AC1D28520122711009212BE /* CoreDataService.swift in Sources */,
+				9A06070A2024C096009A635E /* ChatInteractor.swift in Sources */,
 				9AD0EBC71FFFC1E200DC8A5E /* Auth_service.swift in Sources */,
 				9A256B4A20225D3200FE1EBF /* DialogsListInteractor.swift in Sources */,
 				9AE60901200F47CC00F92DF3 /* MessageFabrique.swift in Sources */,
 				9AD106922017AADA0028D78B /* DialogCell.swift in Sources */,
 				9AD0EBDF2004C00400DC8A5E /* ViewInput.swift in Sources */,
 				9A6A86F02017286600A6C3AB /* DialogsInfoOperation.swift in Sources */,
+				9A17D34220248D12008ECA41 /* CustomViews.swift in Sources */,
 				9A256B4420225CD200FE1EBF /* DialogsListInterfaces.swift in Sources */,
 				9AD0EBD92001673D00DC8A5E /* API_wrapper.swift in Sources */,
 				9A256B4C20225D4400FE1EBF /* DialogsListRouter.swift in Sources */,
-				9AD0EBD01FFFC7C900DC8A5E /* DialogsVC.swift in Sources */,
+				9A0607062024C06C009A635E /* ChatViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,12 +676,14 @@
 			baseConfigurationReference = 19075D2BDB4F9E5F0EB4A446 /* Pods-VKmessanger.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B52HN82HTA;
 				INFOPLIST_FILE = "$(SRCROOT)/VKmessanger/common/other/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = beetlab.VKmessanger;
+				PRODUCT_BUNDLE_IDENTIFIER = beetlab.VKmessenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -664,12 +694,14 @@
 			baseConfigurationReference = 6E840491F78F07851A99A9C9 /* Pods-VKmessanger.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B52HN82HTA;
 				INFOPLIST_FILE = "$(SRCROOT)/VKmessanger/common/other/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = beetlab.VKmessanger;
+				PRODUCT_BUNDLE_IDENTIFIER = beetlab.VKmessenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -2,13 +2,13 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C205" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Dialog" representedClassName="Dialog" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isRead" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="miltiChatURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="out" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="senderID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="snippet" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="type" attributeType="String" syncable="YES"/>
-        <attribute name="users" attributeType="Transformable" syncable="YES"/>
         <relationship name="dialogToMessage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="messageToDialog" inverseEntity="Message" syncable="YES"/>
         <relationship name="dialogToUser" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="userToDialog" inverseEntity="User" syncable="YES"/>
     </entity>
