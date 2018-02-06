@@ -9,6 +9,14 @@
 import Foundation
 
 
-class ChatInteractor {
+class ChatInteractor: ChatInteractorInput {
     
+    weak var output: ChatInteractorOutput?
+    
+    func getData() {
+        
+    }
+    
+    
+
 }

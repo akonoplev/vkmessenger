@@ -9,9 +9,13 @@
 import UIKit
 
 
-protocol ChatViewInterface: class {
+protocol ChatViewInputInterface: class {
     func reloadData()
     func handlerError(error: String)
+}
+
+protocol  ChatViewOutputInterface: class {
+    
 }
 
 protocol ChatFrcViewInterface: class {
@@ -32,7 +36,7 @@ protocol ChatPresenterInterface: class {
 }
 
 protocol ChatInteractorInput: class {
-    func getData(offset: Int)
+    func getData()
 }
 
 protocol ChatInteractorOutput: class {
@@ -41,6 +45,7 @@ protocol ChatInteractorOutput: class {
 }
 
 protocol ChatRouterInterface: class {
+    func showMessage(id: Int64)
     func setUpModule(fromViewController controller: UIViewController)
-    func setUpModule()-> UIViewController
+    func setUpModule(id:Int64)-> UIViewController
 }

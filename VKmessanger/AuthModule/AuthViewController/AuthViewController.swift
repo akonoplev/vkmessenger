@@ -50,7 +50,4 @@ class AuthViewController: UIViewController {
             print("ХЕР")
         }
     }
-
-
-
 }

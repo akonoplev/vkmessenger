@@ -41,13 +41,20 @@ extension DialogsListViewController: UITableViewDelegate, UITableViewDataSource 
             presenter?.getData(offset: presenter?.numberOfEntities() ?? 0)
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        router?.showChat(id: (presenter?.entityAt(index: indexPath) as! Dialog).id)
+    }
 }
 
 
 extension DialogsListViewController: DialogsListViewInterface {
     
     func reloadData() {
-        refreshController.endRefreshing()
+        DispatchQueue.main.async {
+            self.refreshController.endRefreshing()
+        }
+        
     }
     
     func handleInternetError(error: String) {

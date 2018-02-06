@@ -10,10 +10,13 @@ import Foundation
 import UIKit
 
 class DialogsListRouter: DialogsListRouterInterface {
+    
     private let storyboard = UIStoryboard(name: "DialogsList", bundle: nil)
     weak var rootController: UIViewController!
-    func showChat(id: Int) {
-//        rootController.navigationController?.pushViewController(<#T##UIViewController#>, animated: <#T##Bool#>)
+    let chatRouter = ChatRouter()
+    
+    func showChat(id: Int64) {
+        rootController.navigationController?.pushViewController(chatRouter.setUpModule(id: id) , animated: true)
     }
     
     func setUpModule(fromViewController controller: UIViewController) {
@@ -32,6 +35,8 @@ class DialogsListRouter: DialogsListRouterInterface {
         
         presenter.interactor = interactor
         interactor.output = presenter
+        initialController.router = self
+        rootController = initialController
         
         return initialController
     }

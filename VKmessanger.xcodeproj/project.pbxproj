@@ -15,6 +15,7 @@
 		9A0607082024C080009A635E /* ChatPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0607072024C080009A635E /* ChatPresenter.swift */; };
 		9A06070A2024C096009A635E /* ChatInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0607092024C096009A635E /* ChatInteractor.swift */; };
 		9A06070C2024C0A9009A635E /* ChatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A06070B2024C0A9009A635E /* ChatRouter.swift */; };
+		9A0C016C2029E33200951735 /* send.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A0C016B2029E33200951735 /* send.png */; };
 		9A17D33F2024821F008ECA41 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A17D33E2024821F008ECA41 /* ProfileService.swift */; };
 		9A17D34220248D12008ECA41 /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A17D34120248D12008ECA41 /* CustomViews.swift */; };
 		9A256B4220225CBA00FE1EBF /* DialogsList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A256B4120225CBA00FE1EBF /* DialogsList.storyboard */; };
@@ -63,6 +64,7 @@
 		9A0607072024C080009A635E /* ChatPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPresenter.swift; sourceTree = "<group>"; };
 		9A0607092024C096009A635E /* ChatInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInteractor.swift; sourceTree = "<group>"; };
 		9A06070B2024C0A9009A635E /* ChatRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRouter.swift; sourceTree = "<group>"; };
+		9A0C016B2029E33200951735 /* send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = send.png; sourceTree = "<group>"; };
 		9A17D33E2024821F008ECA41 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		9A17D34120248D12008ECA41 /* CustomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
 		9A256B4120225CBA00FE1EBF /* DialogsList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DialogsList.storyboard; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 		9A0606FB2024BB46009A635E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9A0C016B2029E33200951735 /* send.png */,
 				9A0606FE2024BC93009A635E /* phone.png */,
 			);
 			path = images;
@@ -431,6 +434,7 @@
 			files = (
 				9AD0EBBC1FFFBCE100DC8A5E /* LaunchScreen.storyboard in Resources */,
 				9AD0EBB91FFFBCE100DC8A5E /* Assets.xcassets in Resources */,
+				9A0C016C2029E33200951735 /* send.png in Resources */,
 				9AD0EBB71FFFBCE100DC8A5E /* Main.storyboard in Resources */,
 				9A0606FF2024BC93009A635E /* phone.png in Resources */,
 				9A26F7B4201F6F6D0013EAFD /* AvatarCollectionViewCell.xib in Resources */,

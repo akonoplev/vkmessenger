@@ -42,7 +42,7 @@ protocol DialogsListInteractorOutput: class {
 }
 
 protocol DialogsListRouterInterface: class {
-    func showChat(id: Int)
+    func showChat(id: Int64)
     func setUpModule(fromViewController controller: UIViewController)
     func setUpModule()-> UIViewController
 }
