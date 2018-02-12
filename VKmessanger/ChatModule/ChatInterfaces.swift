@@ -30,22 +30,25 @@ protocol ChatFrcViewInterface: class {
 
 protocol ChatPresenterInterface: class {
     func viewDidLoad()
+    func viewWillAppear(animate: Bool)
     func getData(offset: Int)
+    func sendMessage(message: String)
     func numberOfEntities()-> Int
     func entityAt(index: IndexPath)-> Any?
 }
 
 protocol ChatInteractorInput: class {
-    func getData()
+    func getData(id: Int64, title: String, offset: Int, count: Int)
+    func sendMessage(id: Int64, random_id: Int, message: String)
 }
 
 protocol ChatInteractorOutput: class {
-    func success()
-    func failure()
+    func success()-> Void
+    func failure(error: String)-> Void
 }
 
 protocol ChatRouterInterface: class {
-    func showMessage(id: Int64)
+    func showMessage(message: Message)
     func setUpModule(fromViewController controller: UIViewController)
-    func setUpModule(id:Int64)-> UIViewController
+    func setUpModule(chat:Dialog)-> UIViewController
 }

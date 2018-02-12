@@ -13,10 +13,20 @@ class ChatInteractor: ChatInteractorInput {
     
     weak var output: ChatInteractorOutput?
     
-    func getData() {
+    func getData(id: Int64, title: String, offset: Int, count: Int) {
+        DataProvider.getMessagesHistory(id: id, title: title, offset: offset, count: count, success: {
+            CoreDataManager.sharedInstance.saveContext()
+            self.output?.success()
+        }) { (error) in
+            self.output?.failure(error: error)
+        }
+    }
+    
+    func sendMessage(id: Int64, random_id: Int, message: String) {
         
     }
     
-    
+
+
 
 }

@@ -15,8 +15,8 @@ class DialogsListRouter: DialogsListRouterInterface {
     weak var rootController: UIViewController!
     let chatRouter = ChatRouter()
     
-    func showChat(id: Int64) {
-        rootController.navigationController?.pushViewController(chatRouter.setUpModule(id: id) , animated: true)
+    func showChat(chat: Dialog) {
+        rootController.navigationController?.pushViewController(chatRouter.setUpModule(chat: chat) , animated: true)
     }
     
     func setUpModule(fromViewController controller: UIViewController) {

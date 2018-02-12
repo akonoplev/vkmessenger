@@ -140,6 +140,5 @@ class DialogsInfoOperation: Operation {
         user?.addToUserToDialog(self.dialog!)
         dialog?.addToDialogToUser(self.user!)
         
-        
     }
 }

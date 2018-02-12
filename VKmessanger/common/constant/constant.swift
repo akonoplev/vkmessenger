@@ -18,4 +18,8 @@ struct const {
     struct API {
         static let url = "https://api.vk.com/method/"
     }
+    
+    struct chatParams {
+        static let countMessages = 20
+    }
 }

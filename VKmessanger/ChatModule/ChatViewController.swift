@@ -14,25 +14,34 @@ class ChatViewController: UIViewController {
     var presenter: ChatPresenter?
     var chatRouter: ChatRouter?
     
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var textField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        textField.delegate = self
-        textField.layer.cornerRadius = 20
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        self.tableView.scrollToRow(at: IndexPath(item: 99, section: 0), at: .bottom, animated: false)
+        presenter?.viewDidLoad()
+        registrate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        presenter?.viewWillAppear(animate: animated)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
 
+//MARK: view input
 extension ChatViewController: ChatViewInputInterface {
     func reloadData() {
-        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            self.tableView.scrollToRow(at: IndexPath(item: (self.presenter?.numberOfEntities() ?? 0)! - 1, section: 0), at: .bottom, animated: false)
+        }
+
     }
     
     func handlerError(error: String) {
@@ -41,46 +50,74 @@ extension ChatViewController: ChatViewInputInterface {
     
 }
 
+//MARK: table view delegate and dataSource
 extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return presenter?.numberOfEntities() ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "\(indexPath.row)"
-        return cell
+      let message = presenter?.entityAt(index: indexPath) as! Message
+        if message.out {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "outputMessage", for: indexPath) as! OutputMessageCell
+            cell.configure(model: message)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "inputMessage", for: indexPath) as! InputMessageCell
+            cell.configure(model: message)
+            return cell
+        }
     }
 }
 
+//MARK: - fetchResultsController
 extension ChatViewController: ChatFrcViewInterface {
     func beginUpdates() {
-        
+        self.tableView.beginUpdates()
     }
     
     func endUpdates() {
-        
+        self.tableView.endUpdates()
     }
     
     func insert(to newIndexPath: IndexPath?) {
-        
+        if let indexPath = newIndexPath {
+            tableView.insertRows(at: [indexPath], with: .automatic)
+        }
     }
     
     func update(indexPath: IndexPath?, object: Message) {
-        
+        if let indexPath = indexPath {
+            if object.out {
+                let cell = tableView.cellForRow(at: indexPath) as! OutputMessageCell
+                cell.configure(model: object)
+            } else {
+                let cell = tableView.cellForRow(at: indexPath) as! InputMessageCell
+                cell.configure(model: object)
+            }
+        }
     }
     
     func move(from indexPath: IndexPath?, to newIndexPath: IndexPath?) {
+        if let indexPath = indexPath {
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
         
+        if let newIndexPath = newIndexPath {
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
     }
     
     func delete(indexPath: IndexPath?) {
-        
+        if let indexPath = indexPath {
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
 }
 
+
+//MARK: - work with textField and keyboard
 extension ChatViewController: UITextFieldDelegate {
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.becomeFirstResponder()
     }
@@ -90,14 +127,21 @@ extension ChatViewController: UITextFieldDelegate {
         return true
     }
     
+    func notificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
     @objc func keyboardWillShow(notification: Notification) {
         adjustHeight(show: true, notification: notification)
-        self.tableView.scrollToRow(at: IndexPath(item: 99, section: 0) , at: .bottom, animated: false)
+        self.tableView.scrollToRow(at: IndexPath(item: (presenter?.numberOfEntities())! - 1, section: 0) , at: .bottom, animated: false)
         
     }
     
     @objc func keyboardWillHide(notification: Notification) {
         adjustHeight(show: false, notification: notification)
+        self.tableView.scrollToRow(at: IndexPath(item: (presenter?.numberOfEntities())! - 1, section: 0), at: .bottom, animated: false)
     }
     
     func adjustHeight(show: Bool, notification: Notification) {
@@ -111,6 +155,22 @@ extension ChatViewController: UITextFieldDelegate {
             self.view.layoutIfNeeded()
 
         }
+    }
+    
+    @IBAction func sendMessage(_ sender: Any) {
+        presenter?.sendMessage(message: textField.text ?? "")
+    }
+}
 
+extension ChatViewController {
+    func registrate() {
+        textField.delegate = self
+        textField.layer.cornerRadius = 20
+        navigationItem.title = presenter?.dialog?.title == "" ? (presenter?.dialog?.dialogToUser?.allObjects as! [User])[0].name : presenter?.dialog?.title
+        notificationCenter()
+        let leftNib = UINib(nibName: "InputMessageCell", bundle: nil)
+        self.tableView.register(leftNib, forCellReuseIdentifier: "inputMessage")
+        let rightNib = UINib(nibName: "OutputMessageCell", bundle: nil)
+        self.tableView.register(rightNib, forCellReuseIdentifier: "outputMessage")
     }
 }

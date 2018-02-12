@@ -19,27 +19,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Jt-Xq-TC8">
-                                <rect key="frame" x="0.0" y="632" width="375" height="35"/>
+                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите сообщение" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wCI-mb-LJF">
-                                        <rect key="frame" x="35" y="5" width="295" height="25"/>
+                                        <rect key="frame" x="40" y="5" width="290" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartInsertDeleteType="no"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Her-2C-mz9">
-                                        <rect key="frame" x="335" y="5" width="25" height="25"/>
+                                        <rect key="frame" x="335" y="5" width="30" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="25" id="7z2-E6-5n4"/>
-                                            <constraint firstAttribute="height" constant="25" id="s3e-SI-NBh"/>
+                                            <constraint firstAttribute="width" constant="30" id="7z2-E6-5n4"/>
+                                            <constraint firstAttribute="height" constant="30" id="s3e-SI-NBh"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="send"/>
+                                        <connections>
+                                            <action selector="sendMessage:" destination="zhn-fB-c3x" eventType="touchUpInside" id="Imr-ju-zfe"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbU-a5-xNL">
-                                        <rect key="frame" x="5" y="5" width="25" height="25"/>
+                                        <rect key="frame" x="5" y="5" width="30" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="25" id="ave-6Y-Nra"/>
-                                            <constraint firstAttribute="height" constant="25" id="d4b-SB-SMO"/>
+                                            <constraint firstAttribute="width" constant="30" id="ave-6Y-Nra"/>
+                                            <constraint firstAttribute="height" constant="30" id="d4b-SB-SMO"/>
                                         </constraints>
                                         <state key="normal" title="+"/>
                                     </button>
@@ -49,7 +52,7 @@
                                     <constraint firstAttribute="bottom" secondItem="dbU-a5-xNL" secondAttribute="bottom" constant="5" id="C41-Ca-CRf"/>
                                     <constraint firstAttribute="bottom" secondItem="wCI-mb-LJF" secondAttribute="bottom" constant="5" id="L40-VC-hBw"/>
                                     <constraint firstItem="wCI-mb-LJF" firstAttribute="leading" secondItem="dbU-a5-xNL" secondAttribute="trailing" constant="5" id="Thc-4E-Oju"/>
-                                    <constraint firstAttribute="height" constant="35" id="dTz-bE-7Tl"/>
+                                    <constraint firstAttribute="height" constant="40" id="dTz-bE-7Tl"/>
                                     <constraint firstItem="Her-2C-mz9" firstAttribute="leading" secondItem="wCI-mb-LJF" secondAttribute="trailing" constant="5" id="gGw-qE-IiZ"/>
                                     <constraint firstItem="dbU-a5-xNL" firstAttribute="leading" secondItem="2Jt-Xq-TC8" secondAttribute="leading" constant="5" id="jTN-fW-rsf"/>
                                     <constraint firstItem="wCI-mb-LJF" firstAttribute="top" secondItem="2Jt-Xq-TC8" secondAttribute="top" constant="5" id="jXz-yI-o05"/>
@@ -57,9 +60,9 @@
                                     <constraint firstAttribute="trailing" secondItem="wCI-mb-LJF" secondAttribute="trailing" constant="45" id="mvI-I2-iv4"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gJr-x2-PIy">
-                                <rect key="frame" x="0.0" y="64" width="375" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gJr-x2-PIy">
+                                <rect key="frame" x="0.0" y="64" width="375" height="563"/>
+                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="zhn-fB-c3x" id="13X-WX-LBR"/>
                                     <outlet property="delegate" destination="zhn-fB-c3x" id="k4z-7h-i1Q"/>

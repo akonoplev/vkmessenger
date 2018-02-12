@@ -14,7 +14,7 @@ class ChatRouter: ChatRouterInterface {
     
     let storyboard = UIStoryboard(name: "Chat", bundle: nil)
     
-    func showMessage(id: Int64) {
+    func showMessage(message: Message) {
         
     }
     
@@ -23,9 +23,9 @@ class ChatRouter: ChatRouterInterface {
         
     }
     
-    func setUpModule(id : Int64) -> UIViewController {
+    func setUpModule(chat : Dialog) -> UIViewController {
         let chatViewController = storyboard.instantiateViewController(withIdentifier: "chatStoryboard") as! ChatViewController
-        let presenter = ChatPresenter(chat_id: id)
+        let presenter = ChatPresenter(chat: chat)
         let interactor = ChatInteractor()
         
         chatViewController.presenter = presenter

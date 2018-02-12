@@ -22,7 +22,7 @@ class DialogsListViewController: UIViewController {
         registrate()
         presenter?.viewDidLoad()
         refreshControl()
-    }
+        }
 }
 
 extension DialogsListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -43,7 +43,8 @@ extension DialogsListViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        router?.showChat(id: (presenter?.entityAt(index: indexPath) as! Dialog).id)
+        router?.showChat(chat: (presenter?.entityAt(index: indexPath) as! Dialog))
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

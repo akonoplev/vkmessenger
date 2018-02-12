@@ -49,15 +49,15 @@ class API_wrapper {
     }
     
     //MARK: - get message history
-    class func getHistoryMessage(user_id: Int64?, peer_id: Int64?, type: String,count: Int, offset: Int, success: @escaping (_ json: Any)-> Void,failure: @escaping (_ error: String)-> Void)-> URLSessionTask{
+    class func getHistoryMessage(chat_id: Int64, title: String,count: Int, offset: Int, success: @escaping (_ json: Any)-> Void,failure: @escaping (_ error: String)-> Void)-> URLSessionTask{
         
         let url = const.API.url + "messages.getHistory"
-        let request_id = type == "chat" ? "peer_id" : "user_id"
-        let id = type == "chat" ? 2000000000 + (peer_id ?? 0) : user_id
+        let request_id = title == "" ? "user_id"  : "peer_id"
+        let id = request_id == "peer_id" ? 2000000000 + chat_id : chat_id
         let params: [String:Any] = [
             "count": count,
             "offset": offset,
-            request_id: id!,
+            request_id: id,
             "access_token": VKMAuthService.sharedInstance.getAccessToken() ,
             "v": 5.71]
         
@@ -73,6 +73,7 @@ class API_wrapper {
 }
 
 extension API_wrapper {
+    //getProfileInfo
     class func getProfileInfo(success: @escaping (_ json: Any)-> Void, failure: @escaping (_ error: String)-> Void)-> URLSessionTask {
         let url = const.API.url + "account.getProfileInfo"
         let params: [String: Any] = [
@@ -82,6 +83,32 @@ extension API_wrapper {
         let request = API_conf.getRequst(url: url, params: params)
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, requestError) in
             API_conf.acceptDataFromServer(data: data, RequestError: requestError, success: success, failure: failure)
+        }
+        
+        dataTask.resume()
+        return dataTask
+    }
+}
+
+//MARK: LongPoll
+extension API_wrapper {
+    class func getLongPollServer() {
+        
+    }
+    
+    class func sendMessage(chat_id: Int64, message: String, random_id: Int, success: @escaping (_ json: Any)-> Void, failure: @escaping (_ error: String)-> Void)-> URLSessionTask {
+        
+        let encodeMessage = message.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
+        let url = const.API.url + "messages.send"
+        let params: [String: Any] = [
+            "peer_id": chat_id,
+            "random_id": random_id,
+            "message": encodeMessage ?? "",
+            "access_token": VKMAuthService.sharedInstance.getAccessToken(),
+            "v": 5.71 ]
+        let request = API_conf.getRequst(url: url, params: params)
+        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
+            API_conf.acceptDataFromServer(data: data, RequestError: error, success: success, failure: failure)
         }
         
         dataTask.resume()
