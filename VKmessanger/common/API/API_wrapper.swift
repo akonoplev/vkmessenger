@@ -92,9 +92,41 @@ extension API_wrapper {
 
 //MARK: LongPoll
 extension API_wrapper {
-    class func getLongPollServer() {
+    class func getLongPollServer(success: @escaping (_ json: Any)-> Void, failure: @escaping (_ error: String)-> Void )-> URLSessionTask {
+        let url = const.API.url + "messages.getLongPollServer"
+        let params: [String: Any] = [
+            "need_pts": 1,
+            "lp_version": 2,
+            "access_token": VKMAuthService.sharedInstance.getAccessToken(),
+            "v": 5.73]
         
+        let request = API_conf.getRequst(url: url, params: params)
+        
+        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
+            API_conf.acceptDataFromServer(data: data, RequestError: error, success: success, failure: failure)
+        }
+        
+        dataTask.resume()
+        return dataTask
     }
+    
+    class func connectLongPolServer(server: String, key: String, timestamp: Int, success: @escaping (_ json: Any)-> Void, failure: @escaping (_ error: String)-> Void)-> URLSessionTask {
+        let url = "http://\(server)"
+        let params: [String: Any] = [
+            "act": "a_check",
+            "key": key,
+            "ts": timestamp,
+            "wait": 25,
+            "mode": 2,
+            "version": 2]
+        
+        let request = API_conf.getRequst(url: url, params: params)
+        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
+            API_conf.acceptDataFromServer(data: data, RequestError: error, success: success, failure: failure)
+            }
+        dataTask.resume()
+        return dataTask
+}
     
     class func sendMessage(chat_id: Int64, message: String, random_id: Int, success: @escaping (_ json: Any)-> Void, failure: @escaping (_ error: String)-> Void)-> URLSessionTask {
         

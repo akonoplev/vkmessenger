@@ -11,6 +11,7 @@ import UIKit
 
 protocol ChatViewInputInterface: class {
     func reloadData()
+    func scroll(index: Int)
     func handlerError(error: String)
 }
 
@@ -44,6 +45,7 @@ protocol ChatInteractorInput: class {
 
 protocol ChatInteractorOutput: class {
     func success()-> Void
+    func sendMessageSuccess()-> Void
     func failure(error: String)-> Void
 }
 

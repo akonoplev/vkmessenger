@@ -39,7 +39,13 @@ extension ChatViewController: ChatViewInputInterface {
     func reloadData() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            self.tableView.scrollToRow(at: IndexPath(item: (self.presenter?.numberOfEntities() ?? 0)! - 1, section: 0), at: .bottom, animated: false)
+
+        }
+    }
+    
+    func scroll(index: Int) {
+        DispatchQueue.main.async {
+            self.tableView.scrollToRow(at: IndexPath(item: index , section: 0), at: .bottom, animated: false)
         }
 
     }
@@ -88,12 +94,13 @@ extension ChatViewController: ChatFrcViewInterface {
     
     func update(indexPath: IndexPath?, object: Message) {
         if let indexPath = indexPath {
-            if object.out {
-                let cell = tableView.cellForRow(at: indexPath) as! OutputMessageCell
-                cell.configure(model: object)
+            if object.out
+            {
+                let cell = tableView.cellForRow(at: indexPath) as? OutputMessageCell
+                cell?.configure(model: object)
             } else {
-                let cell = tableView.cellForRow(at: indexPath) as! InputMessageCell
-                cell.configure(model: object)
+                let cell = tableView.cellForRow(at: indexPath) as? InputMessageCell
+                cell?.configure(model: object)
             }
         }
     }
@@ -159,6 +166,7 @@ extension ChatViewController: UITextFieldDelegate {
     
     @IBAction func sendMessage(_ sender: Any) {
         presenter?.sendMessage(message: textField.text ?? "")
+        textField.text = ""
     }
 }
 

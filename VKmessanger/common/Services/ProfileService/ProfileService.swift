@@ -12,7 +12,8 @@ import SwiftyJSON
 class ProfileService: NSObject {
     
     private var name = "d"
-    private var id = "d"
+    private var screen_name = "d"
+    private var id: Int64 = 0
     private var avatarURL = "d"
     
     static let sharedInstance = ProfileService()
@@ -25,19 +26,18 @@ class ProfileService: NSObject {
             let screen_name = profileInfo["response"]["screen_name"].stringValue
             
             self.name = first_name + " " + last_name
-            self.id = screen_name
+            self.screen_name = screen_name
             
-            _ = API_wrapper.getUserInfo(id: self.id, success: { (response) in
+            _ = API_wrapper.getUserInfo(id: screen_name, success: { (response) in
                 
                 let infoJson = JSON(response)
                 let arrayInfo = infoJson["response"].arrayValue
                 for param in arrayInfo {
-//                    let id = param["id"].int64Value
+                    self.id = param["id"].int64Value
 //                    let name = "\(param["first_name"].stringValue) \(param["last_name"].stringValue)"
 //                    let online = param["online"].boolValue
                     let avatarURL = param["photo_50"].stringValue
                     self.avatarURL = avatarURL
-
                 }
             }, failure: { (error) in
                 print(error)
@@ -54,6 +54,10 @@ class ProfileService: NSObject {
     
     func getAvatarUrl()-> String {
         return self.avatarURL
+    }
+    
+    func getProfileId()-> Int64 {
+        return Int64(self.id)
     }
     
 }

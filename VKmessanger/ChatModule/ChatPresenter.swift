@@ -52,7 +52,8 @@ extension ChatPresenter: ChatPresenterInterface {
         if DialogsFabrique.hasMessages(id: (self.dialog?.id)!, context: CoreDataManager.sharedInstance.getMainContext()) {
             dialogIsEmpty = true
             setUpFRC()
-            view?.reloadData()
+           // view?.reloadData()
+            view?.scroll(index: (self.frc?.fetchedObjects?.count ?? 1) - 1)
         }
         
         getData(offset: 0)
@@ -63,7 +64,10 @@ extension ChatPresenter: ChatPresenterInterface {
     }
     
     func sendMessage(message: String) {
-        self.interactor?.sendMessage(id: self.dialog?.id ?? 0, random_id: Int(arc4random()), message: message)
+        if message != "" {
+            self.interactor?.sendMessage(id: self.dialog?.id ?? 0, random_id: Int(arc4random()), message: message)
+        }
+
     }
     
     func numberOfEntities() -> Int {
@@ -90,8 +94,13 @@ extension ChatPresenter: ChatInteractorOutput {
             setUpFRC()
             view?.reloadData()
             dialogIsEmpty = false
+            view?.scroll(index: (self.frc?.fetchedObjects?.count ?? 1) - 1)
         }
 
+    }
+    
+    func sendMessageSuccess()-> Void {
+        view?.scroll(index: (self.frc?.fetchedObjects?.count ?? 1) - 1)
     }
     
     func failure(error: String) {
@@ -112,6 +121,7 @@ extension ChatPresenter: NSFetchedResultsControllerDelegate {
             switch type {
             case .insert:
                 self.viewFrc?.insert(to: newIndexPath)
+                self.view?.scroll(index: (self.frc?.fetchedObjects?.count ?? 1) - 1)
             case .update:
                 self.viewFrc?.update(indexPath: indexPath, object: self.frc?.object(at: indexPath!) as! Message)
             case .move:

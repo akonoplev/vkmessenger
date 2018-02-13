@@ -27,6 +27,18 @@ class AuthViewController: UIViewController {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0)
             {
+                _ = API_wrapper.getLongPollServer(success: { (response) in
+                    let json = JSON(response)
+                    let server = json["response"]["server"].stringValue
+                    let key = json["response"]["key"].stringValue
+                    let timestamp = json["response"]["ts"].intValue
+                    LongPollService.connectLongPoll(server: server, key: key, ts: timestamp)
+                    
+                }, failure: { (error) in
+                    print(error)
+                })
+                
+                
                // self.performSegue(withIdentifier: "loginSuccess", sender: self)
                 let navController = UINavigationController()
                 let router = DialogsListRouter()

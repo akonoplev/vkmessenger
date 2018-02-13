@@ -33,6 +33,8 @@
 		9A6B1E8A2031B23800AA1381 /* DialogInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B1E882031B23800AA1381 /* DialogInputCell.swift */; };
 		9A6B1E8B2031B23800AA1381 /* DialogInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A6B1E892031B23800AA1381 /* DialogInputCell.xib */; };
 		9A6B1E8D2031CEAC00AA1381 /* SendMessageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B1E8C2031CEAC00AA1381 /* SendMessageOperation.swift */; };
+		9A6B1E902033248A00AA1381 /* LongPollService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B1E8F2033248A00AA1381 /* LongPollService.swift */; };
+		9A6B1E9220333E6300AA1381 /* MaskDecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B1E9120333E6300AA1381 /* MaskDecode.swift */; };
 		9AAADDF8202B1368001F43F1 /* MessageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAADDF7202B1368001F43F1 /* MessageOperation.swift */; };
 		9AC1D28520122711009212BE /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC1D28420122711009212BE /* CoreDataService.swift */; };
 		9AC4CA57202F0771001FBAEE /* InputMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4CA55202F0771001FBAEE /* InputMessageCell.swift */; };
@@ -90,6 +92,8 @@
 		9A6B1E882031B23800AA1381 /* DialogInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogInputCell.swift; sourceTree = "<group>"; };
 		9A6B1E892031B23800AA1381 /* DialogInputCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DialogInputCell.xib; sourceTree = "<group>"; };
 		9A6B1E8C2031CEAC00AA1381 /* SendMessageOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageOperation.swift; sourceTree = "<group>"; };
+		9A6B1E8F2033248A00AA1381 /* LongPollService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongPollService.swift; sourceTree = "<group>"; };
+		9A6B1E9120333E6300AA1381 /* MaskDecode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskDecode.swift; sourceTree = "<group>"; };
 		9AAADDF7202B1368001F43F1 /* MessageOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageOperation.swift; sourceTree = "<group>"; };
 		9AC1D28420122711009212BE /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		9AC4CA55202F0771001FBAEE /* InputMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMessageCell.swift; sourceTree = "<group>"; };
@@ -259,6 +263,15 @@
 			path = Operation;
 			sourceTree = "<group>";
 		};
+		9A6B1E8E2033208000AA1381 /* LongPollServices */ = {
+			isa = PBXGroup;
+			children = (
+				9A6B1E8F2033248A00AA1381 /* LongPollService.swift */,
+				9A6B1E9120333E6300AA1381 /* MaskDecode.swift */,
+			);
+			path = LongPollServices;
+			sourceTree = "<group>";
+		};
 		9AC1D283201226D2009212BE /* CoreDataService */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,6 +335,7 @@
 		9AD0EBC41FFFC18000DC8A5E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				9A6B1E8E2033208000AA1381 /* LongPollServices */,
 				9A17D33D2024820C008ECA41 /* ProfileService */,
 				9AD106942017D6BB0028D78B /* DateService */,
 				9AD1068C2017A4910028D78B /* AlertService */,
@@ -546,6 +560,7 @@
 			files = (
 				9A6B1E8D2031CEAC00AA1381 /* SendMessageOperation.swift in Sources */,
 				9AD0EBB21FFFBCE100DC8A5E /* AppDelegate.swift in Sources */,
+				9A6B1E9220333E6300AA1381 /* MaskDecode.swift in Sources */,
 				9A6A86EE2017282900A6C3AB /* DataProvider.swift in Sources */,
 				9AD106962017D6D30028D78B /* DateService.swift in Sources */,
 				9AD0EBE12004C04A00DC8A5E /* PresenterInput.swift in Sources */,
@@ -576,6 +591,7 @@
 				9AD106922017AADA0028D78B /* DialogCell.swift in Sources */,
 				9AD0EBDF2004C00400DC8A5E /* ViewInput.swift in Sources */,
 				9A6A86F02017286600A6C3AB /* DialogsInfoOperation.swift in Sources */,
+				9A6B1E902033248A00AA1381 /* LongPollService.swift in Sources */,
 				9A17D34220248D12008ECA41 /* CustomViews.swift in Sources */,
 				9A6B1E8A2031B23800AA1381 /* DialogInputCell.swift in Sources */,
 				9A256B4420225CD200FE1EBF /* DialogsListInterfaces.swift in Sources */,

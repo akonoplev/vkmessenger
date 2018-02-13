@@ -23,7 +23,12 @@ class ChatInteractor: ChatInteractorInput {
     }
     
     func sendMessage(id: Int64, random_id: Int, message: String) {
-        
+        DataProvider.sendMessange(chat_id: id, message: message, random_id: random_id, success: {
+            CoreDataManager.sharedInstance.saveContext()
+            self.output?.sendMessageSuccess()
+        }) { (error) in
+            print(error)
+        }
     }
     
 

@@ -46,7 +46,7 @@ class MessageOperation: Operation {
                 let read_state = item["read_state"].boolValue
                 let body = item["body"].stringValue
                 let date = item["date"].doubleValue
-                let out = item["out"].boolValue
+                let out = self.id == ProfileService.sharedInstance.getProfileId() ? true : item["out"].boolValue
                 
                 let message = MessageFabrique.setMessage(id: id ?? 0, chat_id: user_id, text: body, date: Date(timeIntervalSince1970: date), out: out, isRead: read_state, context: backgroundContext)
                 
